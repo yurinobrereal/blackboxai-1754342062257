@@ -1,0 +1,29 @@
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | default: shop.name }}">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ page_description | default: shop.description | default: shop.name }}">
+
+{%- if settings.share_image -%}
+  <meta property="og:image" content="http:{{ settings.share_image | image_url: width: 1200 }}">
+  <meta property="og:image:secure_url" content="https:{{ settings.share_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="{{ settings.share_image.width }}">
+  <meta property="og:image:height" content="{{ settings.share_image.height }}">
+{%- endif -%}
+
+<meta name="twitter:site" content="{{ settings.social_twitter_link | split: 'twitter.com/' | last | prepend: '@' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | default: shop.name }}">
+<meta name="twitter:description" content="{{ page_description | default: shop.description | default: shop.name }}">
+
+{%- if template contains 'product' -%}
+  <meta property="og:type" content="product">
+  <meta property="product:price:amount" content="{{ product.price | money_without_currency | strip_html }}">
+  <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+{%- endif -%}
+
+{%- if template contains 'article' -%}
+  <meta property="og:type" content="article">
+  <meta property="article:published_time" content="{{ article.published_at | date: '%Y-%m-%d' }}">
+  <meta property="article:author" content="{{ article.author }}">
+{%- endif -%}
