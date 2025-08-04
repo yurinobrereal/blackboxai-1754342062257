@@ -1,0 +1,428 @@
+{{ 'section-product.css' | asset_url | stylesheet_tag }}
+{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-rating.css' | asset_url | stylesheet_tag }}
+{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+{%- assign first_3d_model = product.media | where: "media_type", "model" | first -%}
+{%- if first_3d_model -%}
+  {{ 'component-product-model.css' | asset_url | stylesheet_tag }}
+  <link id="ModelViewerStyle" rel="stylesheet" href="https://cdn.shopify.com/model-viewer-ui/assets/v1.0/model-viewer-ui.css" media="print" onload="this.media='all'">
+  <link id="ModelViewerOverride" rel="stylesheet" href="{{ 'component-model-viewer-ui.css' | asset_url }}" media="print" onload="this.media='all'">
+{%- endif -%}
+
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+{%- if product.media.size > 1 -%}
+  <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
+<!-- Kenku Shilajit Product Page -->
+<div class="kenku-product-page">
+  <!-- Product Section -->
+  <section class="product-section">
+    <div class="page-width">
+      <div class="product-grid">
+        <!-- Product Gallery -->
+        <div class="product-gallery">
+          <div class="main-image">
+            {% if product.featured_media %}
+              <img src="{{ product.featured_media | image_url: width: 600 }}" alt="{{ product.featured_media.alt | escape }}" class="product-main-image">
+            {% else %}
+              <img src="//kenku.com.es/cdn/shop/files/GIRALAPERILLAPARACAMBIARLOSNUMEROS_5.png?v=1723755121&width=600" alt="Shilajit 100% Puro" class="product-main-image">
+            {% endif %}
+          </div>
+          <div class="thumbnail-gallery">
+            {% for media in product.media limit: 7 %}
+              <img src="{{ media | image_url: width: 100 }}" alt="{{ media.alt | escape }}" class="thumbnail" onclick="changeMainImage(this)">
+            {% else %}
+              <img src="//kenku.com.es/cdn/shop/files/GIRALAPERILLAPARACAMBIARLOSNUMEROS_5.png?v=1723755121&width=100" alt="Shilajit" class="thumbnail active" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/WhatsApp_Image_2024-09-17_at_10.37.22_PM.jpg?v=1727193315&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/WhatsApp_Image_2024-09-17_at_10.37.23_PM_f2cc820b-afcd-41e6-ac76-d13a5fcdddd1.jpg?v=1727193314&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/GIRALAPERILLAPARACAMBIARLOSNUMEROS_7_39d2448d-8b93-4396-8802-519f2e2d2cd9.png?v=1723755121&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/MUNEQUERADEDRENAJELIMPICOPURSONICSLIMFIT_20240127_113410_0000.png?v=1723755121&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/61xGldf41wL._AC_SL1500.jpg?v=1723755121&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+              <img src="//kenku.com.es/cdn/shop/files/Copyofsoon.png?v=1723755121&width=100" alt="Shilajit" class="thumbnail" onclick="changeMainImage(this)">
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Product Details -->
+        <div class="product-details">
+          <div class="price-section">
+            <span class="original-price">€80,00</span>
+            <span class="sale-price">€34,99</span>
+            <span class="discount-badge">AHORRA 56%</span>
+          </div>
+
+          <h1 class="product-title">{{ product.title | default: "Shilajit 100% Puro 💎 Fuente de Energía Vital del Himalaya" }}</h1>
+
+          <div class="rating-section">
+            <div class="stars">★★★★★</div>
+            <span class="rating-text">(+20.000 Clientes satisfechos)</span>
+          </div>
+
+          <div class="product-description">
+            <p><strong>¿Buscas una Fuente Natural de Energía?</strong></p>
+            <p>Shilajit 100% Puro 💎 del Himalaya es la clave para revitalizar tu cuerpo y mente:</p>
+            <ul class="benefits-list">
+              <li>✓ <strong>Fortalece tu inmunidad y resistencia.</strong></li>
+              <li>✓ <strong>Rico en minerales y ácido fúlvico.</strong></li>
+              <li>✓ <strong>Desintoxica y regenera tus células.</strong></li>
+            </ul>
+          </div>
+
+          {% form 'product', product %}
+            <div class="product-form">
+              <div class="product-form__buttons">
+                <button type="submit" name="add" class="btn product-form__cart-submit" {% if product.available %}{% else %}disabled{% endif %}>
+                  <span>AGREGAR AL CARRITO</span>
+                </button>
+              </div>
+            </div>
+          {% endform %}
+
+          <div class="product-guarantees">
+            <div class="guarantee-item">
+              <span class="guarantee-icon">🚚</span>
+              <span>Pago Contra Reembolso</span>
+            </div>
+            <div class="guarantee-item">
+              <span class="guarantee-icon">✅</span>
+              <span>1 Año de Garantía</span>
+            </div>
+          </div>
+
+          <!-- Customer Review -->
+          <div class="customer-review">
+            <img src="//kenku.com.es/cdn/shop/files/Screenshot_398.png?v=1724784345" alt="Customer" class="customer-avatar">
+            <div class="review-content">
+              <p>"Un impulso increíble de energía. Siento la diferencia en mi vitalidad diaria."</p>
+              <cite>Marco B.</cite>
+            </div>
+          </div>
+
+          <!-- Shipping Info -->
+          <div class="shipping-info">
+            <p><strong>🚚 ENVÍO PRIORITARIO</strong> - Recibe entre <strong>6. Agosto</strong> y <strong>9. Agosto</strong>.</p>
+          </div>
+
+          <!-- Collapsible Sections -->
+          <div class="product-accordion">
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                <span>✅ ¿Qué Incluye?</span>
+              </summary>
+              <div class="accordion-content">
+                <p>Incluye 30 gramos de Shilajit en su caja sellada y una cuchara de madera tallada para medir la dosis recomendada.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                <span>✅ Retornos y Devoluciones</span>
+              </summary>
+              <div class="accordion-content">
+                <p>Tienes 30 días para contactar por devoluciones. Ofrecemos 1 año de garantía por fallas de fábrica. Contáctanos por email para asistencia.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                <span>✅ Información de Envío</span>
+              </summary>
+              <div class="accordion-content">
+                <p>Enviamos a toda España en un máximo de 48 horas. Recibirás un número de seguimiento para tu pedido.</p>
+              </div>
+            </details>
+
+            <details class="accordion-item">
+              <summary class="accordion-header">
+                <span>✅ ¿Cómo usarlo?</span>
+              </summary>
+              <div class="accordion-content">
+                <p>Toma 300-600 mg de Shilajit y disuélvelo en un vaso de agua tibia o caliente. Consúmelo 1 o 2 veces al día.</p>
+              </div>
+            </details>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="trust-badges">
+            <div class="badge">👏🏻 <strong>18,000+</strong> Clientes felices</div>
+            <div class="badge">💪 Calidad garantizada</div>
+            <div class="badge">🚚 Envíos gratis y seguros</div>
+            <div class="badge">⭐ Garantía al 100%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scrolling Banner -->
+  <div class="quality-banner">
+    <div class="scrolling-content">
+      <span>CALIDAD PREMIUM</span>
+      <span>SHILAJIT 100% PURO DEL HIMALAYA</span>
+      <span>MEJOR PRODUCTO DEL 2024</span>
+      <span>CALIDAD PREMIUM</span>
+      <span>SHILAJIT 100% PURO DEL HIMALAYA</span>
+      <span>MEJOR PRODUCTO DEL 2024</span>
+      <span>CALIDAD PREMIUM</span>
+      <span>SHILAJIT 100% PURO DEL HIMALAYA</span>
+      <span>MEJOR PRODUCTO DEL 2024</span>
+      <span>CALIDAD PREMIUM</span>
+      <span>SHILAJIT 100% PURO DEL HIMALAYA</span>
+      <span>MEJOR PRODUCTO DEL 2024</span>
+    </div>
+  </div>
+
+  <!-- Product Benefits Section -->
+  <section class="product-benefits">
+    <div class="page-width">
+      <div class="benefits-grid">
+        <div class="benefit-image">
+          <img src="//kenku.com.es/cdn/shop/files/WhatsApp_Image_2024-09-17_at_10.37.23_PM.jpg?v=1727193297&width=600" alt="Shilajit 100% Puro">
+        </div>
+        <div class="benefit-content">
+          <h2>Shilajit 100% Puro</h2>
+          <p>Nuestros clientes en toda España que han tomado Shilajit 100% Puro reportan un 80% más de energía, mejor rendimiento físico, recomendado por nutricionistas como suplemento natural efectivo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Product Section -->
+  <section class="main-product-section">
+    <div class="page-width">
+      <div class="product-hero">
+        <img src="//kenku.com.es/cdn/shop/files/giphy-downsized-large_3.gif?v=1724792438&width=800" alt="Shilajit Animation" class="hero-gif">
+        <div class="hero-content">
+          <h2>¡EL PRODUCTO QUE BUSCABAS!</h2>
+          <p>Este <strong>poderoso suplemento</strong> fortalece la resistencia, <strong>amplifica la resistencia y revitaliza</strong> los niveles de <strong>energía</strong>. Incorpóralo a tu <strong>régimen diario</strong> para desbloquear un nuevo nivel de <strong>vitalidad</strong>. Experimente los <strong>máximos beneficios</strong> con un uso constante <strong>durante 3 meses.</strong></p>
+        </div>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-item">
+          <h3>✓ Calidad Premium:</h3>
+          <p>Es resultado del proceso de descomposición de materia vegetal y minerales.</p>
+        </div>
+        <div class="feature-item">
+          <h3>✓ Fortalece tu sistema:</h3>
+          <p>Mejore su viaje de bienestar con la resina de Shilajit Puro y 100% natural procedente de las prístinas alturas del Himalaya, aproximadamente a 18,000 pies sobre el nivel del mar. Rico en ácido fúlvico y oligoelementos, que ayuda a fortalecer el sistema</p>
+        </div>
+        <div class="feature-item">
+          <h3>✓ Revitaliza tu Vida:</h3>
+          <p>Descubre el secreto de la vitalidad eterna con nuestro Shilajit Puro del Himalaya. Siente la diferencia con una energía renovada y un bienestar óptimo.</p>
+        </div>
+        <div class="feature-item">
+          <h3>✓ Fuente de Energía Milenaria:</h3>
+          <p>Aprovecha el poder ancestral del Shilajit 100% Puro del Himalaya. Recarga tu vitalidad y mejora tu bienestar con esta joya de la naturaleza.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After Section -->
+  <section class="before-after-section">
+    <div class="page-width">
+      <h2>¡Eleva tu Energía con Nuestro Shilajit 100% Puro del Himalaya!</h2>
+      <p>¡Nuestro Shilajit 100% Puro del Himalaya es una fuente natural que eleva tu energía, proporcionándote vitalidad renovada y un impulso completo para enfrentar tus actividades diarias con mayor vitalidad!</p>
+      
+      <div class="comparison-grid">
+        <div class="comparison-item">
+          <h3>Antes</h3>
+          <img src="//kenku.com.es/cdn/shop/files/GIRALAPERILLAPARACAMBIARLOSNUMEROS_5.jpg?v=1724788881&width=500" alt="Antes">
+        </div>
+        <div class="comparison-item">
+          <h3>Después</h3>
+          <img src="//kenku.com.es/cdn/shop/files/ezgif-2-d40b624ade.jpg?v=1724788881&width=500" alt="Después">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Action Gallery -->
+  <section class="action-gallery">
+    <div class="page-width">
+      <h2>Shilajit en Acción</h2>
+      <div class="gallery-grid">
+        <img src="//kenku.com.es/cdn/shop/files/giphy-downsized-large_3.gif?v=1724792438&width=400" alt="Shilajit Action 1">
+        <img src="//kenku.com.es/cdn/shop/files/giphy-downsized-large_4.gif?v=1724792451&width=400" alt="Shilajit Action 2">
+        <img src="//kenku.com.es/cdn/shop/files/giphy-downsized-large_5.gif?v=1724792945&width=400" alt="Shilajit Action 3">
+      </div>
+    </div>
+  </section>
+
+  <!-- Energy Section -->
+  <section class="energy-section">
+    <div class="page-width">
+      <h2>Energía Vital del Himalaya</h2>
+      <p>Descubre la auténtica fuente de vitalidad con nuestro Shilajit 100% Puro del Himalaya. Obtén resistencia renovada y niveles de energía revitalizados. ¡Pruébalo hoy mismo!</p>
+      
+      <div class="energy-features">
+        <div class="energy-feature">
+          <img src="//kenku.com.es/cdn/shop/files/LO_480x480_45a4d5d7-4458-4940-a1ee-b1a4c11bd0fa.jpg?v=1724790879&width=300" alt="Vitalidad natural">
+          <h3>+ Vitalidad natural</h3>
+        </div>
+        <div class="energy-feature">
+          <h3>+ Rico en minerales</h3>
+        </div>
+        <div class="energy-feature">
+          <img src="//kenku.com.es/cdn/shop/files/MUNEQUERADEDRENAJELIMPICOPURSONICSLIMFIT_20240127_113410_0000_1.jpg?v=1724791079&width=300" alt="Fuente de energía">
+          <h3>+ Fuente de energía</h3>
+        </div>
+      </div>
+
+      <div class="energy-benefits">
+        <div class="benefit">
+          <h3>✓ Energía duradera:</h3>
+          <p>Proporciona una energía sostenida a lo largo del día, sin los altibajos asociados con la cafeína u otros estimulantes.</p>
+        </div>
+        <div class="benefit">
+          <h3>✓ Mejora la Vitalidad:</h3>
+          <p>Mejora el rendimiento físico y la resistencia.</p>
+        </div>
+        <div class="benefit">
+          <h3>✓ Promotor de la desintoxicación:</h3>
+          <p>Ayuda a eliminar toxinas del cuerpo, apoyando así los procesos naturales de desintoxicación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Usage Instructions -->
+  <section class="usage-section">
+    <div class="page-width">
+      <div class="usage-grid">
+        <div class="usage-content">
+          <h2>Shilajit 100% Puro</h2>
+          <img src="//kenku.com.es/cdn/shop/files/how_to_gif.gif?v=1724791214&width=400" alt="Como usar">
+          <h3>¿Cuál es la dosis recomendada?</h3>
+          <p>La dosis es de aproximadamente 300 mg diarios, como se indica en el envase.</p>
+        </div>
+        <div class="usage-image">
+          <img src="//kenku.com.es/cdn/shop/files/ezgif-3-10db81ba2b.jpg?v=1724791304&width=600" alt="Instrucciones de uso">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Showcase -->
+  <section class="product-showcase">
+    <div class="page-width">
+      <div class="showcase-grid">
+        <div class="showcase-image">
+          <img src="//kenku.com.es/cdn/shop/files/shilajit_biyode_resin_beneficios-15289aff23836f6d2317195047671721-1024-1024.webp?v=1724794071&width=600" alt="Shilajit Benefits">
+        </div>
+        <div class="showcase-content">
+          <h2>Shilajit 100% Puro 💎 Fuente de Energía Vital del Himalaya</h2>
+          <p>Confía en los resultados. ¡Prueba Shilajit ahora y comprueba la diferencia tú mismo!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comparison Table -->
+  <section class="comparison-section">
+    <div class="page-width">
+      <h2>Shilajit™ versus Otras Marcas</h2>
+      <p>Shilajit 100% Puro del Himalaya es una fuente natural que eleva tu energía!</p>
+      
+      <div class="comparison-table">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Kenku España</th>
+              <th>Others</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pureza</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Origen</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Presentación</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+            <tr>
+              <td>Portabilidad</td>
+              <td>✅</td>
+              <td>❌</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="energy-highlight">
+        <div class="energy-icon">⚡</div>
+        <div class="energy-text">
+          <h3>Energía duradera</h3>
+          <p>Energía constante sin altibajos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Testimonials -->
+  <section class="testimonials-section">
+    <div class="page-width">
+      <div class="testimonials-grid">
+        <div class="testimonial">
+          <img src="//kenku.com.es/cdn/shop/files/1c6c9244-5052-4323-8548-6235641f5204.jpg?v=1724793619&width=200" alt="Marco T.">
+          <div class="stars">★★★★★</div>
+          <p>"Excelente para mantenerme activo."</p>
+          <cite><strong>Marco T.</strong></cite>
+        </div>
+        <div class="testimonial">
+          <img src="//kenku.com.es/cdn/shop/files/WhatsApp_Image_2024-08-27_at_4.14.44_PM.jpg?v=1724793700&width=200" alt="Andrés M.">
+          <div class="stars">★★★★★</div>
+          <p>"Noté una gran mejora en vitalidad."</p>
+          <cite><strong>Andrés M.</strong></cite>
+        </div>
+        <div class="testimonial">
+          <img src="//kenku.com.es/cdn/shop/files/a3f9a852-e29b-49b2-ba25-1ee87a7edfce.jpg?v=1724793818&width=200" alt="Javier L.">
+          <div class="stars">★★★★★</div>
+          <p>"La energía es constante y no hay caídas bruscas. ¡Perfecto!"</p>
+          <cite><strong>Javier L.</strong></cite>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+function changeMainImage(thumbnail) {
+  const mainImage = document.querySelector('.product-main-image');
+  const thumbnails = document.querySelectorAll('.thumbnail');
+  
+  // Remove active class from all thumbnails
+  thumbnails.forEach(thumb => thumb.classList.remove('active'));
+  
+  // Add active class to clicked thumbnail
+  thumbnail.classList.add('active');
+  
+  // Change main image source
+  const newSrc = thumbnail.src.replace('width=100', 'width=600');
+  mainImage.src = newSrc;
+}
+
+// Set first thumbnail as active by default
+document.addEventListener('DOMContentLoaded', function() {
+  const firstThumbnail = document.querySelector('.thumbnail');
+  if (firstThumbnail) {
+    firstThumbnail.classList.add('active');
+  }
+});
+</script>
