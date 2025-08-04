@@ -1,0 +1,896 @@
+/* Kenku Theme CSS - Shilajit Product Page */
+
+/* Global Variables */
+:root {
+  --color-primary: #8B5A96;
+  --color-secondary: #ffffff;
+  --color-accent: #FFD700;
+  --color-text: #333333;
+  --color-background: #ffffff;
+  --color-border: #e0e0e0;
+  --font-family: 'Arial', sans-serif;
+  --border-radius: 8px;
+  --box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+.page-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Scrolling Banner Styles */
+.kenku-scrolling-banner {
+  background: linear-gradient(135deg, var(--color-primary), #9d6ba8);
+  color: white;
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+}
+
+.scrolling-content {
+  display: inline-block;
+  animation: scroll 30s linear infinite;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.scrolling-content span {
+  margin-right: 50px;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Header Styles */
+.header {
+  background: var(--color-secondary);
+  padding: 15px 0;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  z-index: 100;
+}
+
+.kenku-logo {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header__icon {
+  color: var(--color-text);
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Product Page Styles */
+.kenku-product-page {
+  background: var(--color-background);
+}
+
+.product-section {
+  padding: 40px 0;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* Product Gallery */
+.product-gallery {
+  position: sticky;
+  top: 20px;
+}
+
+.main-image {
+  margin-bottom: 20px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.product-main-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.product-main-image:hover {
+  transform: scale(1.05);
+}
+
+.thumbnail-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+}
+
+/* Product Details */
+.product-details {
+  padding: 20px 0;
+}
+
+.price-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.original-price {
+  font-size: 18px;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.sale-price {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+.discount-badge {
+  background: #e74c3c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.product-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.stars {
+  color: var(--color-accent);
+  font-size: 18px;
+}
+
+.rating-text {
+  color: #666;
+  font-size: 14px;
+}
+
+.product-description {
+  margin-bottom: 30px;
+}
+
+.benefits-list {
+  list-style: none;
+  margin: 15px 0;
+}
+
+.benefits-list li {
+  margin: 8px 0;
+  font-size: 16px;
+  color: var(--color-text);
+}
+
+/* Product Form */
+.product-form__cart-submit {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 18px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.product-form__cart-submit:hover {
+  background: #7a4d85;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 90, 150, 0.3);
+}
+
+/* Guarantees */
+.product-guarantees {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.guarantee-icon {
+  font-size: 16px;
+}
+
+/* Customer Review */
+.customer-review {
+  display: flex;
+  gap: 15px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+}
+
+.customer-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.review-content p {
+  font-style: italic;
+  margin-bottom: 5px;
+}
+
+.review-content cite {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+
+/* Shipping Info */
+.shipping-info {
+  background: #e8f5e8;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-bottom: 25px;
+  border-left: 4px solid #28a745;
+}
+
+/* Accordion */
+.product-accordion {
+  margin-bottom: 30px;
+}
+
+.accordion-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.accordion-header {
+  background: #f8f9fa;
+  padding: 15px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+}
+
+.accordion-header:hover {
+  background: #e9ecef;
+}
+
+.accordion-content {
+  padding: 20px;
+  background: white;
+}
+
+/* Trust Badges */
+.trust-badges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.badge {
+  text-align: center;
+  padding: 10px;
+  background: #f8f9fa;
+  border-radius: var(--border-radius);
+  font-size: 14px;
+}
+
+/* Quality Banner */
+.quality-banner {
+  background: var(--color-primary);
+  color: white;
+  padding: 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.quality-banner .scrolling-content {
+  animation: scroll 25s linear infinite;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Product Benefits Section */
+.product-benefits {
+  padding: 60px 0;
+  background: #f8f9fa;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.benefit-content h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.benefit-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.benefit-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Main Product Section */
+.main-product-section {
+  padding: 80px 0;
+  background: white;
+}
+
+.product-hero {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hero-gif {
+  max-width: 400px;
+  margin-bottom: 30px;
+  border-radius: var(--border-radius);
+}
+
+.hero-content h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+  font-weight: bold;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  color: #666;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.feature-item h3 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: var(--color-primary);
+}
+
+.feature-item p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Before/After Section */
+.before-after-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.before-after-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.before-after-section p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #666;
+}
+
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.comparison-item h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.comparison-item img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Action Gallery */
+.action-gallery {
+  padding: 80px 0;
+  background: white;
+  text-align: center;
+}
+
+.action-gallery h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: var(--color-text);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.05);
+}
+
+/* Energy Section */
+.energy-section {
+  padding: 80px 0;
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.energy-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.energy-section > p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #666;
+}
+
+.energy-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.energy-feature {
+  text-align: center;
+}
+
+.energy-feature img {
+  width: 100%;
+  max-width: 200px;
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
+}
+
+.energy-feature h3 {
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+.energy-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  text-align: left;
+}
+
+.benefit h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: var(--color-primary);
+}
+
+.benefit p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* Usage Section */
+.usage-section {
+  padding: 80px 0;
+  background: white;
+}
+
+.usage-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.usage-content h2 {
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: var(--color-text);
+}
+
+.usage-content h3 {
+  font-size: 24px;
+  margin: 20px 0 15px;
+  color: var(--color-primary);
+}
+
+.usage-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.usage-content img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: var(--border-radius);
+  margin: 20px 0;
+}
+
+.usage-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Product Showcase */
+.product-showcase {
+  padding: 80px 0;
+  background: #f8f9fa;
+}
+
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.showcase-content h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.showcase-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.showcase-image img {
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* Comparison Section */
+.comparison-section {
+  padding: 80px 0;
+  background: white;
+  text-align: center;
+}
+
+.comparison-section h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+.comparison-section > p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+.comparison-table {
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comparison-table th {
+  background: var(--color-primary);
+  color: white;
+  font-weight: bold;
+}
+
+.comparison-table td:first-child {
+  font-weight: bold;
+  text-align: left;
+}
+
+.energy-highlight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.energy-icon {
+  font-size: 48px;
+  color: var(--color-accent);
+}
+
+.energy-text h3 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: var(--color-text);
+}
+
+.energy-text p {
+  color: #666;
+}
+
+/* Testimonials Section */
+.testimonials-section {
+  padding: 80px 0;
+  background: #2c2c2c;
+  color: white;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.testimonial {
+  text-align: center;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+}
+
+.testimonial img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.testimonial .stars {
+  color: var(--color-accent);
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.testimonial p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.testimonial cite {
+  font-weight: bold;
+  color: white;
+}
+
+/* Footer */
+.footer {
+  background: var(--color-primary);
+  color: white;
+  padding: 40px 0;
+  text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .product-grid,
+  .benefits-grid,
+  .features-grid,
+  .comparison-grid,
+  .gallery-grid,
+  .energy-features,
+  .energy-benefits,
+  .usage-grid,
+  .showcase-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .product-title {
+    font-size: 24px;
+  }
+  
+  .hero-content h2 {
+    font-size: 32px;
+  }
+  
+  .energy-section h2,
+  .before-after-section h2,
+  .action-gallery h2,
+  .comparison-section h2 {
+    font-size: 28px;
+  }
+  
+  .trust-badges {
+    grid-template-columns: 1fr;
+  }
+  
+  .product-guarantees {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .scrolling-content {
+    font-size: 12px;
+  }
+  
+  .quality-banner .scrolling-content {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-width {
+    padding: 0 15px;
+  }
+  
+  .product-section,
+  .product-benefits,
+  .main-product-section,
+  .before-after-section,
+  .action-gallery,
+  .energy-section,
+  .usage-section,
+  .product-showcase,
+  .comparison-section,
+  .testimonials-section {
+    padding: 40px 0;
+  }
+  
+  .sale-price {
+    font-size: 24px;
+  }
+  
+  .product-form__cart-submit {
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-10 { margin-bottom: 10px; }
+.mb-20 { margin-bottom: 20px; }
+.mb-30 { margin-bottom: 30px; }
+
+.mt-10 { margin-top: 10px; }
+.mt-20 { margin-top: 20px; }
+.mt-30 { margin-top: 30px; }
+
+.hidden { display: none; }
+.visible { display: block; }
